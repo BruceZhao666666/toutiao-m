@@ -14,11 +14,12 @@
         :error.sync="error"
         error-text="请求失败，点击重新加载"
       >
-        <van-cell
+        <!-- <van-cell
           v-for="(article, index) in list"
           :key="index"
           :title="article.title"
-        />
+        /> -->
+        <article-item :article="article" v-for="(article, index) in list" :key="index" :title="article.title"></article-item>
       </van-list>
     </van-pull-refresh>
   </div>
@@ -26,6 +27,7 @@
 
 <script>
 import { getArticles } from '@/api/article'
+import ArticleItem from '@/components/article-item'
 
 export default {
   name: 'ArticleList',
@@ -45,6 +47,9 @@ export default {
       type: Object,
       required: true
     }
+  },
+  components: {
+    ArticleItem
   },
   methods: {
     async onRefresh () {
